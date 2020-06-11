@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackbr/Tab/inicio.dart';
 
 class Home extends StatefulWidget {
@@ -74,19 +75,19 @@ class _HomeState extends State<Home> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text("Inicio")
+                  icon: Icon(FontAwesomeIcons.tachometerAlt),
+                  title: Text(" Inicio")
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.pie_chart),
+                  icon: Icon(FontAwesomeIcons.chartPie),
                   title: Text("Gráfico")
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.card_travel),
-                  title: Text("Viagens")
+                  icon: Icon(FontAwesomeIcons.road),
+                  title: Text(" Viagens")
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
+                  icon: Icon(FontAwesomeIcons.wrench),
                   title: Text("Definições")
               )
             ],

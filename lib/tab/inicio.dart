@@ -68,7 +68,7 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
                   ChangeNotifierProvider<FoodTimer>(create: (_) => foodService),
                   ChangeNotifierProvider<SleepTimer>(create: (_) => sleepService)
                  ],
-                child: RadialMenu()
+                child: RadialMenu(context: context)
             ),
           ),
           SizedBox(height: 20),
@@ -88,9 +88,9 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
               ChangeNotifierProvider<FoodTimer>(
                 create: (_) => foodService,
                 child: ColumnTimer(
-                  colorIcon: Colors.red,
+                  colorIcon: Colors.green,
                   colorColumn: Colors.transparent,
-                  icon: Icons.fastfood,
+                  icon: FontAwesomeIcons.utensils,
                   text: 'Refeição',
                   type: FoodTimer,
                 ),
@@ -108,9 +108,9 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
               ChangeNotifierProvider<TimerService>(
                 create: (_) => timeService,
                 child: ColumnTimer(
-                  colorIcon: Colors.green,
+                  colorIcon: Colors.redAccent,
                   colorColumn: Colors.transparent,
-                  icon: FontAwesomeIcons.truck,
+                  icon: FontAwesomeIcons.truckMoving,
                   text: 'Dirigindo',
                   type: TimerService,
                 ),

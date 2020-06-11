@@ -3,6 +3,7 @@ import 'package:hackbr/timer/food_timer.dart';
 import 'package:hackbr/timer/pause_timer.dart';
 import 'package:hackbr/timer/sleep_timer.dart';
 import 'package:hackbr/timer/timer_service.dart';
+import 'package:hackbr/utils/show_dialog.dart';
 import 'package:hackbr/utils/start_button.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
@@ -10,6 +11,10 @@ import 'package:vector_math/vector_math.dart' show radians, Vector3;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RadialMenu extends StatefulWidget {
+  final BuildContext context;
+
+  const RadialMenu({this.context});
+
   createState() => _RadialMenuState();
 }
 
@@ -25,7 +30,7 @@ class _RadialMenuState extends State<RadialMenu> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return RadialAnimation(controller: controller);
+    return RadialAnimation(controller: controller, contextt: widget.context);
   }
 
   @override
@@ -37,7 +42,9 @@ class _RadialMenuState extends State<RadialMenu> with SingleTickerProviderStateM
 
 
 class RadialAnimation extends StatelessWidget {
-  RadialAnimation({ Key key, this.controller }) :
+  final BuildContext contextt;
+
+  RadialAnimation({ Key key, this.controller, this.contextt }) :
 
         translation = Tween<double>(
           begin: 0.0,
@@ -115,12 +122,18 @@ class RadialAnimation extends StatelessWidget {
                         Provider.of<SleepTimer>(context, listen: false).reset();
                         Provider.of<FoodTimer>(context, listen: false).reset();
                         Provider.of<PauseTimer>(context, listen: false).reset();
+                        showDialog(
+                            context: contextt,
+                            builder: (context){
+                              return Showdialog();
+                            }
+                        );
                       }
                     ),
                     _buildButton(
                         180,
                         color: Colors.green,
-                        icon: Icons.fastfood,
+                        icon: FontAwesomeIcons.utensils,
                         text: 'Refeição',
                         function: (){
                           Provider.of<TimerService>(context, listen: false).stop();
@@ -130,7 +143,7 @@ class RadialAnimation extends StatelessWidget {
                     _buildButton(
                         270,
                         color: Colors.grey,
-                        icon: Icons.airline_seat_flat,
+                        icon: FontAwesomeIcons.bed,
                         text: 'Dormir',
                         function: (){
                           Provider.of<TimerService>(context, listen: false).stop();
@@ -186,9 +199,9 @@ class RadialAnimation extends StatelessWidget {
                   _close();
                   function();
                 },
-                elevation: 0
+                elevation: 5
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 7),
             Text(text, style: TextStyle(color: Colors.white))
           ],
         )
