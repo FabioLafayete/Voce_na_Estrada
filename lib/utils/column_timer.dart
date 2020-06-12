@@ -31,12 +31,19 @@ class ColumnTimer extends StatelessWidget {
     dynamic service;
 
     if (type == SleepTimer){
+      Provider.of<SleepTimer>(context);
       service = ClockSleep();
-    } else if (type == FoodTimer){
+    }
+    else if (type == FoodTimer){
+      Provider.of<FoodTimer>(context);
       service = ClockFood();
-    }  else if (type == PauseTimer){
+    }
+    else if (type == PauseTimer){
+      Provider.of<PauseTimer>(context);
       service = ClockPause();
-    } else if (type == TimerService){
+    }
+    else if (type == TimerService){
+      Provider.of<TimerService>(context);
       service = Clock();
     }
 
@@ -44,7 +51,9 @@ class ColumnTimer extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, right: 10),
       color: colorColumn,
       height: 50,
+      width: MediaQuery.of(context).size.width,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Icon(icon, color: colorIcon),
           SizedBox(width: 15),
@@ -59,7 +68,11 @@ class ColumnTimer extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10),
-          service
+          Container(
+            width: 120,
+            height: 30,
+            child: service != null ? service : Container(),
+          )
         ],
       ),
     );
