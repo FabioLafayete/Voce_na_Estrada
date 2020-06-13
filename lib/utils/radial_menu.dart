@@ -7,7 +7,7 @@ import 'package:hackbr/utils/show_dialog.dart';
 import 'package:hackbr/utils/start_button.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
-import 'package:vector_math/vector_math.dart' show radians, Vector3;
+import 'package:vector_math/vector_math.dart' show radians;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RadialMenu extends StatefulWidget {
@@ -92,6 +92,14 @@ class RadialAnimation extends StatelessWidget {
     Provider.of<PauseTimer>(context);
     Provider.of<SleepTimer>(context);
     Provider.of<FoodTimer>(context);
+    Provider.of<TimerService>(context);
+
+    void reset(){
+      Provider.of<TimerService>(context, listen: false).reset();
+      Provider.of<SleepTimer>(context, listen: false).reset();
+      Provider.of<FoodTimer>(context, listen: false).reset();
+      Provider.of<PauseTimer>(context, listen: false).reset();
+    }
 
     return AnimatedBuilder(
         animation: controller,
@@ -118,14 +126,15 @@ class RadialAnimation extends StatelessWidget {
                         icon: Icons.stop,
                         text: 'Encerrar viagem',
                       function: (){
-                        Provider.of<TimerService>(context, listen: false).reset();
-                        Provider.of<SleepTimer>(context, listen: false).reset();
-                        Provider.of<FoodTimer>(context, listen: false).reset();
-                        Provider.of<PauseTimer>(context, listen: false).reset();
+                          bool encerrar = false;
                         showDialog(
                             context: contextt,
                             builder: (context){
-                              return Showdialog();
+                              return Showdialog(
+                                encerra: (){
+                                  reset();
+                                },
+                              );
                             }
                         );
                       }
@@ -193,6 +202,7 @@ class RadialAnimation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             FloatingActionButton(
+              heroTag: null,
                 child: Icon(icon),
                 backgroundColor: color,
                 onPressed: (){

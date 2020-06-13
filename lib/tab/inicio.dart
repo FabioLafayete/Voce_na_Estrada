@@ -21,7 +21,7 @@ class InicioTab extends StatefulWidget{
 }
 
 class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixin{
-  String text = 'MENSAGEM AQUI kwdkjawh wkje hkjqwh  kwjdl asdls asda sj dk a';
+  String text = 'Hey!! \n\nLembre-se de beber água 💦';
 
   bool is_active = false;
 
