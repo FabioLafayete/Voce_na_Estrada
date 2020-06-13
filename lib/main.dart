@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hackbr/screens/wellcome.dart';
-import 'Screens/home.dart';
 
 void main() {
   runApp(MyApp());

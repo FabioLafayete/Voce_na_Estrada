@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackbr/timer/food_timer.dart';
@@ -104,7 +102,7 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
             ChangeNotifierProvider<TimerService>.value(
               value: timeService,
               child: ColumnTimer(
-                colorIcon: Colors.redAccent,
+                colorIcon: Color.fromRGBO(166, 39, 6, 1),
                 colorColumn: Colors.transparent,
                 icon: FontAwesomeIcons.truckMoving,
                 text: 'Dirigindo',

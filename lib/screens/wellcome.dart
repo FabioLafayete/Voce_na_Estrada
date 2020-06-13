@@ -23,15 +23,16 @@ class _WellcomePageState extends State<WellcomePage> {
       new Slide(
         //title: "Você na Estrada",
         description: "Conectando caminhoneiros ao melhor que existe nas estradas!",
-        backgroundImage: "lib/images/01.jpeg",
+        backgroundImage: "lib/images/01.jpg",
         //backgroundOpacityColor: Colors.white.withOpacity(0.5),
         backgroundOpacity: 0.5,
-        centerWidget: Column(
+        marginTitle: EdgeInsets.only(top: 40),
+        widgetTitle: Column(
           children: <Widget>[
             Stack(
               children: <Widget>[
                 Container(
-                    width: 450,
+                    width: 550,
                     height: 200,
                     color: Colors.white.withOpacity(0.15),
                 ),
@@ -45,7 +46,7 @@ class _WellcomePageState extends State<WellcomePage> {
                 ),
               ],
             ),
-            Container(height: 180)
+            Container(height: 300)
           ],
         ),
         backgroundColor: Colors.blue,

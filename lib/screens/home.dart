@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackbr/Tab/inicio.dart';
+import 'package:hackbr/tab/chart.dart';
+import 'package:hackbr/tab/stores.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -33,9 +35,9 @@ class _HomeState extends State<Home> {
           title: Text(
             page == 0 ? "Inicio" :
             page == 1 ? 'Gráfico' :
-            page == 2 ? "Viagens" : 'Definições',
+            page == 2 ? "Lojas" : 'Perfil',
             style: TextStyle(
-                color: Colors.amber,
+                color: Color.fromRGBO(166, 39, 6, 1),
                 fontSize: 23
             ),
           ),
@@ -53,7 +55,7 @@ class _HomeState extends State<Home> {
         bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(
               canvasColor: Colors.black26,
-              primaryColor: Colors.amber,
+              primaryColor: Color.fromRGBO(166, 39, 6, 1),
               textTheme: Theme.of(context).textTheme.copyWith(
                   caption: TextStyle(
                       color: Colors.white38
@@ -64,7 +66,7 @@ class _HomeState extends State<Home> {
             showUnselectedLabels: true,
             showSelectedLabels: true,
             unselectedItemColor: Colors.white.withOpacity(0.5),
-            selectedItemColor: Colors.amber,
+            selectedItemColor: Color.fromRGBO(166, 39, 6, 1),
             currentIndex: page,
             onTap: (p){
               _pageController.animateToPage(
@@ -76,19 +78,19 @@ class _HomeState extends State<Home> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.tachometerAlt),
-                  title: Text(" Inicio")
+                  title: Text(" Inicio", style: TextStyle(fontSize: 17))
               ),
               BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.chartPie),
-                  title: Text("Gráfico")
+                  title: Text("Gráfico", style: TextStyle(fontSize: 17))
               ),
               BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.road),
-                  title: Text(" Viagens")
+                  icon: Icon(FontAwesomeIcons.storeAlt),
+                  title: Text("  Lojas", style: TextStyle(fontSize: 17))
               ),
               BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.wrench),
-                  title: Text("Definições")
+                  icon: Icon(Icons.person, size: 30,),
+                  title: Text("Perfil", style: TextStyle(fontSize: 17))
               )
             ],
           ),
@@ -104,8 +106,8 @@ class _HomeState extends State<Home> {
             controller: _pageController,
             children: <Widget>[
               InicioTab(),
-              Container(color: Colors.orangeAccent),
-              Container(color: Colors.yellow),
+              ChartTab(),
+              StoresTab(),
               Container(color: Colors.red)
             ],
           ),
