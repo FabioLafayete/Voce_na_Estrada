@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackbr/utils/resume_chart.dart';
 
 class ChartTab extends StatefulWidget {
   final Widget child;
@@ -83,7 +84,7 @@ class _ChartTabState extends State<ChartTab> {
             charts.ColorUtil.fromDartColor(task.colorval),
         id: 'percent',
         data: piedata,
-        labelAccessorFn: (Task row, _) => '${row.taskvalue}',
+        labelAccessorFn: (Task row, _) => '${row.taskvalue} %',
       ),
     );
 
@@ -114,10 +115,8 @@ class _ChartTabState extends State<ChartTab> {
                     TabBar(
                       indicatorColor: Color.fromRGBO(143, 43, 10, 1),
                       tabs: [
-                        Tab(
-                          icon: Icon(FontAwesomeIcons.solidChartBar),
-                        ),
                         Tab(icon: Icon(FontAwesomeIcons.chartPie)),
+                        Tab(icon: Icon(FontAwesomeIcons.solidChartBar)),
                       ],
                     ),
                   ],
@@ -127,6 +126,100 @@ class _ChartTabState extends State<ChartTab> {
           ),
           body: TabBarView(
             children: [
+              Container(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: ListView(
+                    children: <Widget>[
+                      Text(
+                          'Porcentagem de atividades',
+                          style: TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.40,
+                        child: charts.PieChart(
+                            _seriesPieData,
+                            animate: true,
+                            animationDuration: Duration(seconds: 1),
+                            behaviors: [
+                              new charts.DatumLegend(
+                                outsideJustification: charts.OutsideJustification.endDrawArea,
+                                horizontalFirst: false,
+                                desiredMaxRows: 2,
+                                cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
+                                entryTextStyle: charts.TextStyleSpec(
+                                    color: charts.MaterialPalette.black,
+                                    fontFamily: 'Georgia',
+                                    fontSize: 18
+                                ),
+                              )
+                            ],
+                            defaultRenderer: new charts.ArcRendererConfig(
+                                arcWidth: 150,
+                                arcRendererDecorators: [
+                                  new charts.ArcLabelDecorator(
+                                      labelPosition: charts.ArcLabelPosition.inside)
+                                ])),
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        //color: Color.fromRGBO(45, 45, 45, 1).withOpacity(0.3),
+                        width: MediaQuery.of(context).size.width,
+                        //height: MediaQuery.of(context).size.height * 0.2,
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Resumo',
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                            ),
+                            SizedBox(height: 10),
+                            Resume.resumeChart(
+                              title: 'Dirigindo:',
+                              icon: FontAwesomeIcons.truckMoving,
+                              colorIcon: Color.fromRGBO(166, 39, 6, 1),
+                              maxLine: 5,
+                              text: 'Você tem dirigido acima da média recomendada. Considere administrar melhor o tempo entre as viagens para descanso.'
+                            ),
+                            Divider(color: Colors.black),
+                            Resume.resumeChart(
+                                title: 'Dormindo:',
+                                icon: FontAwesomeIcons.bed,
+                                colorIcon: Colors.grey,
+                                maxLine: 5,
+                                text: 'Sua média de sono esta OK.'
+                            ),
+                            Divider(color: Colors.black),
+                            Resume.resumeChart(
+                                title: 'Refeição:',
+                                icon: FontAwesomeIcons.utensils,
+                                colorIcon: Colors.green,
+                                maxLine: 5,
+                                text: 'Horario de refeição é bem mais do que só comer, aproveite o momento para relaxar também.'
+                            ),
+                            Divider(color: Colors.black),
+                            Resume.resumeChart(
+                                title: 'Descanso:',
+                                icon: FontAwesomeIcons.clock,
+                                colorIcon: Colors.blue,
+                                maxLine: 5,
+                                text: 'Sua média de descanso pode ser melhor. Aproveite para fazer alongamentos.'
+                            ),
+                            Divider(color: Colors.black),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Container(
@@ -147,48 +240,6 @@ class _ChartTabState extends State<ChartTab> {
                             behaviors: [new charts.SeriesLegend()],
                             animationDuration: Duration(seconds: 1),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Porcentagem de atividades',
-                          style: TextStyle(
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.bold)
-                        ),
-                        SizedBox(height: 10.0),
-                        Expanded(
-                          child: charts.PieChart(
-                              _seriesPieData,
-                              animate: true,
-                              animationDuration: Duration(seconds: 1),
-                              behaviors: [
-                                new charts.DatumLegend(
-                                  outsideJustification: charts.OutsideJustification.endDrawArea,
-                                  horizontalFirst: false,
-                                  desiredMaxRows: 2,
-                                  cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
-                                  entryTextStyle: charts.TextStyleSpec(
-                                      color: charts.MaterialPalette.purple.shadeDefault,
-                                      fontFamily: 'Georgia',
-                                      fontSize: 18),
-                                )
-                              ],
-                              defaultRenderer: new charts.ArcRendererConfig(
-                                  arcWidth: 100,
-                                  arcRendererDecorators: [
-                                    new charts.ArcLabelDecorator(
-                                        labelPosition: charts.ArcLabelPosition.inside)
-                                  ])),
                         ),
                       ],
                     ),

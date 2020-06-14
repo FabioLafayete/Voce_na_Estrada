@@ -42,25 +42,50 @@ class PlaceTile extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                FlatButton(
-                  child: Text("Ver no Mapa"),
-                  textColor: Colors.blue,
-                  padding: EdgeInsets.zero,
-                  onPressed: (){
-                    launch("https://www.google.com/maps/search/?api=1&query=${snapshot["lat"]},"
-                        "${snapshot["long"]}");
-                  },
+                snapshot["ponto"] == true ? Row(
+                  children: <Widget>[
+                    Container(
+                      width: 8,
+                      height: 8,
+                      margin: EdgeInsets.only(left: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(5.0),
+                        ),
+                        border: Border.all(
+                            color: Colors.green.shade400,
+                            width: 2.0
+                        ),
+                        color: Colors.green
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    Text('Ponto de parada', style: TextStyle(fontSize: 12))
+                  ],
+                ) : Container(),
+                Row(
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text("Ver no Mapa"),
+                      textColor: Colors.blue,
+                      padding: EdgeInsets.zero,
+                      onPressed: (){
+                        launch("https://www.google.com/maps/search/?api=1&query=${snapshot["lat"]},"
+                            "${snapshot["long"]}");
+                      },
+                    ),
+                    FlatButton(
+                      child: Text("Ligar"),
+                      textColor: Colors.blue,
+                      padding: EdgeInsets.zero,
+                      onPressed: (){
+                        launch("tel: ${snapshot["phone"]}");
+                      },
+                    )
+                  ],
                 ),
-                FlatButton(
-                  child: Text("Ligar"),
-                  textColor: Colors.blue,
-                  padding: EdgeInsets.zero,
-                  onPressed: (){
-                    launch("tel: ${snapshot["phone"]}");
-                  },
-                )
               ],
             )
           ],

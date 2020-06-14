@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackbr/Tab/inicio.dart';
+import 'package:hackbr/tab/PerfilTab.dart';
 import 'package:hackbr/tab/chart.dart';
 import 'package:hackbr/tab/stores.dart';
 
@@ -44,12 +45,6 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.black26,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.notifications, color: Colors.white),
-              color: Colors.white,
-            )
-          ],
         ),
         backgroundColor: Colors.grey[850],
         bottomNavigationBar: Theme(
@@ -108,7 +103,7 @@ class _HomeState extends State<Home> {
               InicioTab(),
               ChartTab(),
               StoresTab(),
-              Container(color: Colors.red)
+              PerfilTab()
             ],
           ),
         ),

@@ -114,7 +114,7 @@ class RadialAnimation extends StatelessWidget {
                         0,
                         color: Colors.blueAccent,
                         icon: Icons.access_time,
-                        text: 'Descanço',
+                        text: 'Descanso',
                       function: (){
                         Provider.of<TimerService>(context, listen: false).stop();
                         Provider.of<PauseTimer>(context, listen: false).start();

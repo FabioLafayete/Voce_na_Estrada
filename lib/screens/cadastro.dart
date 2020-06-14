@@ -83,7 +83,7 @@ class _CadastroState extends State<Cadastro> {
                       colorIcon: Color.fromRGBO(143, 43, 10, 1),
                       colorText: Colors.white,
                       icon: Icons.lock_outline,
-                      obscure: false,
+                      obscure: true,
                     ),
                     SizedBox(height: 10),
                     CustomTextFild.defaultTextField(
@@ -94,7 +94,7 @@ class _CadastroState extends State<Cadastro> {
                       colorIcon: Color.fromRGBO(143, 43, 10, 1),
                       colorText: Colors.white,
                       icon: Icons.lock_outline,
-                      obscure: false,
+                      obscure: true,
                     ),
                     SizedBox(height: 50),
                     Row(

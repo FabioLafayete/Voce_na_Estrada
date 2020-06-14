@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
                       colorIcon: Color.fromRGBO(143, 43, 10, 1),
                       colorText: Colors.white,
                       icon: Icons.lock_outline,
-                      obscure: false,
+                      obscure: true,
                     ),
                     SizedBox(height: 50),
                     Row(

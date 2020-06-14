@@ -4,7 +4,6 @@ import 'package:hackbr/screens/login.dart';
 import 'package:hackbr/utils/button.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
-import 'dart:math' as math;
 
 class WellcomePage extends StatefulWidget {
   @override
@@ -21,10 +20,8 @@ class _WellcomePageState extends State<WellcomePage> {
 
     slides.add(
       new Slide(
-        //title: "Você na Estrada",
         description: "Conectando caminhoneiros ao melhor que existe nas estradas!",
         backgroundImage: "lib/images/01.jpg",
-        //backgroundOpacityColor: Colors.white.withOpacity(0.5),
         backgroundOpacity: 0.5,
         marginTitle: EdgeInsets.only(top: 40),
         widgetTitle: Column(
@@ -55,7 +52,7 @@ class _WellcomePageState extends State<WellcomePage> {
     slides.add(
       new Slide(
         //title: "Você na Estrada",
-        description: "Conectando caminhoneiros ao melhor que existe nas estradas!",
+        description: "Informamos você sobre os melhores hábitos e comportamentos saudáveis",
         backgroundImage: "lib/images/02.jpg",
         centerWidget: Container(height: 380),
         backgroundColor: Colors.blue,
@@ -64,7 +61,7 @@ class _WellcomePageState extends State<WellcomePage> {
     slides.add(
       new Slide(
         //title: "Você na Estrada",
-        description: "Conectando caminhoneiros ao melhor que existe nas estradas!",
+        description: "Venha se juntar conosco, queremos viajar com você na estrada!",
         backgroundImage: "lib/images/03.jpg",
         centerWidget: Container(height: 80),
         backgroundColor: Colors.blue,

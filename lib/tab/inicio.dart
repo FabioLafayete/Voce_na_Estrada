@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackbr/global/global.dart';
 import 'package:hackbr/timer/food_timer.dart';
 import 'package:hackbr/timer/pause_timer.dart';
 import 'package:hackbr/timer/sleep_timer.dart';
@@ -19,9 +22,33 @@ class InicioTab extends StatefulWidget{
 }
 
 class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixin{
-  String text = 'Hey!! \n\nLembre-se de beber água 💦';
 
-  bool is_active = false;
+  int totalMessage = 0;
+  int nowMessage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      totalMessage = mensagens.length - 1;
+    });
+  }
+
+
+  Future<String> getMessages () async {
+
+    if(totalMessage == nowMessage){
+      setState(() {
+        nowMessage = 0;
+      });
+    }
+    await Future.delayed(Duration(seconds: 15), (){});
+    String result = mensagens[nowMessage];
+    setState(() {
+      nowMessage++;
+    });
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +70,17 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
               color: Colors.white.withOpacity(0.05),
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.only(left: 10, right: 10),
-              child: Text(text,
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              child: FutureBuilder<String>(
+                future: getMessages(),
+                initialData: 'Hey!! \n\nLembre-se de beber água 💦',
+                builder: (context, snapshot) {
+                  return Text(snapshot.data,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 5,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  );
+                }
               ),
             )
         ),
@@ -75,7 +108,7 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
                 colorIcon: Colors.blue,
                 colorColumn: Colors.white.withOpacity(0.1),
                 icon: Icons.access_time,
-                text: 'Descanço',
+                text: 'Descanso',
                 type: PauseTimer,
               ),
             ),

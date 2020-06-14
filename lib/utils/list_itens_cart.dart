@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:hackbr/utils/button.dart';
 
-class ListItens extends StatefulWidget {
+class ListItemCart extends StatefulWidget {
 
   final Map<String, dynamic> snapshot;
-  final Function add;
   final Function rm;
+  final Function update;
 
-  ListItens({this.snapshot, this.add, this.rm});
+  const ListItemCart({
+    this.snapshot,
+    this.rm,
+    this.update
+  });
 
   @override
-  _ListItensState createState() => _ListItensState();
+  _ListItemCartState createState() => _ListItemCartState();
 }
 
-class _ListItensState extends State<ListItens> {
+class _ListItemCartState extends State<ListItemCart> {
+
+  int total;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      total = widget.snapshot['count'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +46,7 @@ class _ListItensState extends State<ListItens> {
                   widget.snapshot['image'],
                   height: 120,
                   width: 100,
-                  fit: BoxFit.scaleDown,
+                  fit: BoxFit.fitHeight,
                 ),
                 SizedBox(width: 10),
                 Column(
@@ -79,7 +91,7 @@ class _ListItensState extends State<ListItens> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: Text(
@@ -89,41 +101,54 @@ class _ListItensState extends State<ListItens> {
                         maxLines: 3,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text('R\$ ${widget.snapshot['price'].toStringAsFixed(2)}',
                           style: TextStyle(color: Colors.white, fontSize: 17),
                         ),
-                        SizedBox(width: 75),
-                        CustomButton.defaultButton(
-                            heightButton: 30,
-                            widthButton: 110,
-                            color: widget.snapshot['is_buy'] == false ? Colors.green.withOpacity(0.3) :
-                            Colors.red.withOpacity(0.3),
-                            borderSideColor: widget.snapshot['is_buy'] == false ? Colors.green : Colors.red,
-                            widthBorder: 1,
-                            borderRadius: 7,
-                            elevation: 4,
-                            text: widget.snapshot['is_buy'] == false ? "ADICIONAR" : 'REMOVER',
-                            fontSize: 12,
-                            textColor: Colors.white,
-                            disabledColor: Colors.white.withOpacity(0.6),
-                            disabledTextColor: Colors.green,
-                            onPress: (){
-                              if(widget.snapshot['is_buy'] == false){
-                                setState(() {
-                                  widget.snapshot['is_buy']  = true;
-                                  widget.add(widget.snapshot);
-                                });
-                              } else {
-                                setState(() {
-                                  widget.snapshot['is_buy'] = false;
-                                  widget.rm(widget.snapshot);
-                                });
-                              }
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(width: 30),
+                        IconButton(
+                            icon: Icon(Icons.remove),
+                            color: Theme.of(context).primaryColor,
+                            disabledColor: Colors.grey,
+                            onPressed: total < 2 ? null :
+                                (){
+                              setState(() {
+                                total -= 1;
+                                widget.snapshot['count'] --;
+                                widget.update(widget.snapshot);
+                              });
                             }
+                        ),
+                        Text(total.toString(), style: TextStyle(color: Colors.white)),
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          color: Theme.of(context).primaryColor,
+                          onPressed: (){
+                            setState(() {
+                              total += 1;
+                              widget.snapshot['count'] ++;
+                              widget.update(widget.snapshot);
+                            });
+                          },
+                        ),
+                        SizedBox(width: 20,),
+                        FlatButton(
+                          child: Text("Remover"),
+                          textColor: Colors.white,
+                          onPressed: (){
+                            setState(() {
+                              widget.snapshot['is_buy'] = false;
+                              widget.rm(widget.snapshot);
+                            });
+                          },
                         )
                       ],
                     )
@@ -132,7 +157,7 @@ class _ListItensState extends State<ListItens> {
               ]
           ),
         ),
-      ),
+      )
     );
   }
 }

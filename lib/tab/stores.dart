@@ -16,13 +16,26 @@ class _StoresTabState extends State<StoresTab> {
         'long': '-46.9832226',
         'phone': '+551146870606',
         'title': 'COSTELASUL58',
+        'ponto': true,
         'itens' : [
           {
+            'id': 1,
             'title': 'Coma a vontade por um preço fixo',
             'image': 'https://lh3.ggpht.com/p/AF1QipMReT1o-MIwg1Prg6M3WSlSPaAn_oTA6xTq6uaZ=s1536',
             'price': 21.90,
-            'cashback': 2.0
-          }
+            'cashback': 2.0,
+            'is_buy': false,
+            'count': 1
+          },
+          {
+            'id': 2,
+            'title': 'Lata coca cola',
+            'image': 'https://www.imigrantesbebidas.com.br/bebida/images/products/full/1984_Refrigerante_Coca_Cola_Lata_350_ml.jpg',
+            'price': 4.50,
+            'cashback': 1.0,
+            'is_buy': false,
+            'count': 1
+          },
           ]
       },
       {
@@ -31,7 +44,37 @@ class _StoresTabState extends State<StoresTab> {
         'lat': '-23.9305206',
         'long': '-47.0071751',
         'phone': '+5511971773858',
-        'title': 'Baitaca Burgers'
+        'title': 'Baitaca Burgers',
+        'ponto': false,
+        'itens': [
+          {
+            'id': 1,
+            'title': 'Hamburguer no prato',
+            'image': 'https://lh5.googleusercontent.com/p/AF1QipOt_frCKD_HO-QArEE4i8o2ByDS5Il9pt3RPXi0=s1354-k-no',
+            'price': 18.90,
+            'cashback': 2.0,
+            'is_buy': false,
+            'count': 1
+          },
+          {
+            'id': 2,
+            'title': 'X - Salada com bebida',
+            'image': 'https://lh5.googleusercontent.com/p/AF1QipMyapIauaXl-M1NwoITCE0PfuwD-ULr4IPWNIlV=w203-h253-k-no',
+            'price': 12.00,
+            'cashback': 1.0,
+            'is_buy': false,
+            'count': 1
+          },
+          {
+            'id': 3,
+            'title': 'Lata coca cola',
+            'image': 'https://www.imigrantesbebidas.com.br/bebida/images/products/full/1984_Refrigerante_Coca_Cola_Lata_350_ml.jpg',
+            'price': 4.50,
+            'cashback': 1.0,
+            'is_buy': false,
+            'count': 1
+          },
+        ]
       },
       {
         'address': 'Campina Grande do Sul - State of Paraná, 83430-000',
@@ -39,10 +82,13 @@ class _StoresTabState extends State<StoresTab> {
         'lat': '-25.1074189',
         'long': '-48.7942217',
         'phone': '',
-        'title': 'Pelanda'
+        'title': 'Pelanda',
+        'ponto': true,
+        'itens' : []
       },
       ];
   }
+
 
   @override
   Widget build(BuildContext context) {

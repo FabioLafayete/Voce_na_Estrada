@@ -4,6 +4,7 @@ class CustomButton {
   static Widget defaultButton ({
     VoidCallback onPress,
     String text,
+    Widget widget,
     bool loading = false,
     double elevation,
     double borderRadius,
@@ -26,12 +27,12 @@ class CustomButton {
               borderRadius: BorderRadius.circular(borderRadius),
             ),
             elevation: elevation,
-            child: Text(text,
+            child: widget == null ? Text(text,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: fontSize
                 )
-            ),
+            ) : widget,
             textColor: textColor,
             disabledColor: disabledColor,
             disabledTextColor: disabledTextColor,
