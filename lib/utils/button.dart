@@ -27,12 +27,16 @@ class CustomButton {
               borderRadius: BorderRadius.circular(borderRadius),
             ),
             elevation: elevation,
-            child: widget == null ? Text(text,
+            child: widget == null ? loading == false ? Text(text,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: fontSize
                 )
-            ) : widget,
+            ) : Container(
+              height: 30,
+              width: 30,
+              child: Center(child: CircularProgressIndicator()),
+            )  : widget,
             textColor: textColor,
             disabledColor: disabledColor,
             disabledTextColor: disabledTextColor,

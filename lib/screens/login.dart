@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hackbr/screens/home.dart';
 import 'package:hackbr/utils/button.dart';
@@ -9,6 +11,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,10 +104,22 @@ class _LoginState extends State<Login> {
                             textColor: Colors.white,
                             disabledColor: Colors.white.withOpacity(0.6),
                             disabledTextColor: Colors.green,
+                            loading: loading,
                             onPress: (){
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(builder: (context)=> Home()));
+                              setState(() {
+                                loading = true;
+                              });
+                              Timer(
+                                  Duration(seconds: 3),
+                                      (){
+                                    setState(() {
+                                      loading = false;
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(builder: (context)=> Home()));
+                                    });
+                                  }
+                              );
                             }
                         ),
                       ],

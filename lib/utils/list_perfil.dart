@@ -7,14 +7,18 @@ class ListPerfil {
     Color colorIcon,
     double sizeText,
     double sizeIcon,
-    Color colorText
+    Color colorText,
+    Function function
 }){
-    return Row(
-      children: <Widget>[
-        Icon(icon, color: colorIcon, size: sizeIcon),
-        SizedBox(width: 20),
-        Text(text, style: TextStyle(color: colorText, fontSize: sizeText))
-      ],
+    return GestureDetector(
+      onTap: function,
+      child: Row(
+        children: <Widget>[
+          Icon(icon, color: colorIcon, size: sizeIcon),
+          SizedBox(width: 20),
+          Text(text, style: TextStyle(color: colorText, fontSize: sizeText))
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hackbr/screens/wellcome.dart';
 import 'package:hackbr/utils/list_perfil.dart';
 
 class PerfilTab extends StatefulWidget {
@@ -108,7 +109,11 @@ class _PerfilTabState extends State<PerfilTab> {
               colorText: Colors.red,
               sizeIcon: 20,
               sizeText: 18,
-              text: 'Sair'
+              text: 'Sair',
+            function: (){
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => WellcomePage()));
+            }
           ),
           //Divider(color: Colors.white.withOpacity(0.4))
         ],

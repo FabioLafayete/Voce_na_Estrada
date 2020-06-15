@@ -185,7 +185,7 @@ class _ChartTabState extends State<ChartTab> {
                               icon: FontAwesomeIcons.truckMoving,
                               colorIcon: Color.fromRGBO(166, 39, 6, 1),
                               maxLine: 5,
-                              text: 'Você tem dirigido acima da média recomendada. Considere administrar melhor o tempo entre as viagens para descanso.'
+                              text: 'Você tem dirigido acima da média recomendada. Considere administrar melhor o tempo nas suas viagens para descansar mais.'
                             ),
                             Divider(color: Colors.black),
                             Resume.resumeChart(

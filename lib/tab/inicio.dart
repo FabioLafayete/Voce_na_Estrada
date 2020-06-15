@@ -42,7 +42,7 @@ class _InicioTabState extends State<InicioTab> with AutomaticKeepAliveClientMixi
         nowMessage = 0;
       });
     }
-    await Future.delayed(Duration(seconds: 15), (){});
+    await Future.delayed(Duration(seconds: 300), (){});
     String result = mensagens[nowMessage];
     setState(() {
       nowMessage++;
