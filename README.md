@@ -2,4 +2,4 @@
 
 Aplicativo feito em Flutter, Você na Estrada.
 
-![](vcnaestrada.gif =350x350)
+![](vcnaestrada.gif | width=100)
