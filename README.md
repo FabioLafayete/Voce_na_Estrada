@@ -1,5 +1,5 @@
 # Você na Estrada
 
-Aplicativo Você na Estrada
+Aplicativo feito em Flutter, Você na Estrada.
 
-![](vcnaestrada.jpeg)
+![](vcnaestrada.gif)
