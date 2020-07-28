@@ -2,6 +2,6 @@
 
 Aplicativo feito em Flutter, Você na Estrada.
 
-<img src="vcnaestrada.gif" width="300" height="500"/>
+<img src="vcnaestrada.gif" width="350" height="600"/>
 
 <!--![]( | width=100) -->
